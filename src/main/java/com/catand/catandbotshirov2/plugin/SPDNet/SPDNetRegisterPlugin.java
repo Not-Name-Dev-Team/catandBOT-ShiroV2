@@ -13,6 +13,7 @@ import org.springframework.util.DigestUtils;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Iterator;
 import java.util.regex.Matcher;
 
 @Shiro
@@ -142,7 +143,9 @@ public class SPDNetRegisterPlugin {
 				});
 
 				//遍历寻找是否有相同用户名或者相同key
-				for (Account account1 : spdJSON.getAccounts()) {
+				Iterator<Account> accountIterator = spdJSON.getAccounts().iterator();
+				while (accountIterator.hasNext()) {
+					Account account1 = accountIterator.next();
 					//检查用户名
 					if (account1.getNick().equals(name)) {
 						if (account1.getKey().equals(key)) {
@@ -156,11 +159,9 @@ public class SPDNetRegisterPlugin {
 
 					//检查key
 					else if (account1.getKey().equals(key)) {
-						if (spdJSON.getAccounts().remove(account1)) {
-							sendMsg = MsgUtils.builder().at(event.getUserId()).text("\n好好好, " + name);
-						} else {
-							throw new RuntimeException("从JSON删除account不成功");
-						}
+						accountIterator.remove();
+						sendMsg = MsgUtils.builder().at(event.getUserId()).text("\n好好好, " + name);
+
 					}
 				}
 
@@ -173,7 +174,7 @@ public class SPDNetRegisterPlugin {
 				bufferedWriter.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-				sendMsg = MsgUtils.builder().text("你妈,SPD注册功能出BUG了,快去控制台看看日志");
+				sendMsg = MsgUtils.builder().text("你妈,SPD改名功能出BUG了,快去控制台看看日志");
 				bot.sendGroupMsg(event.getGroupId(), sendMsg.build(), false);
 				return;
 			}
