@@ -6,7 +6,6 @@ shiro:
   plugin-list:
     - com.catand.catandbotshirov2.plugin.LogPlugin #控制台日志插件
     - com.catand.catandbotshirov2.plugin.CatandPlugin #大部分基础功能插件
-    - com.catand.catandbotshirov2.plugin.SPDNet.SPDNetRegisterPlugin #SPDNet相关插件,一般情况下没用
     - com.catand.catandbotshirov2.plugin.SPDNet.SPDNetGetKeyPlugin
     - com.catand.catandbotshirov2.plugin.BeautifulPicturePlugin #美图插件
     - com.catand.catandbotshirov2.plugin.ImagePlugin #查头像插件
