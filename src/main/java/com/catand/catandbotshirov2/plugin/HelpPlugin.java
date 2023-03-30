@@ -1,21 +1,19 @@
 package com.catand.catandbotshirov2.plugin;
 
-import com.mikuac.shiro.annotation.GroupMessageHandler;
+import com.mikuac.shiro.annotation.AnyMessageHandler;
 import com.mikuac.shiro.annotation.common.Shiro;
 import com.mikuac.shiro.common.utils.MsgUtils;
 import com.mikuac.shiro.core.Bot;
-import com.mikuac.shiro.dto.event.message.GroupMessageEvent;
+import com.mikuac.shiro.dto.event.message.AnyMessageEvent;
 import org.springframework.stereotype.Component;
-
-import java.util.regex.Matcher;
 
 @Shiro
 @Component
 public class HelpPlugin {
 	MsgUtils sendMsg;
 
-	@GroupMessageHandler(cmd = "^帮助|help$")
-	public void sendHelpMsg(Bot bot, GroupMessageEvent event, Matcher matcher) {
+	@AnyMessageHandler(cmd = "^帮助|help$")
+	public void sendHelpMsg(Bot bot, AnyMessageEvent event) {
 		sendMsg = MsgUtils.builder().text("这是catand的机器人,当前版本：1.0.7\n" +
 				"-主要开发者：Catand\n-协同开发者：JDSALing\n" +
 				"-基于 Shiro \n-目前所拥有的功能：\n" +
@@ -31,6 +29,6 @@ public class HelpPlugin {
 				"在群聊中发送'key查询',将会发送Key到你的QQ邮箱中\n" +
 				"关于邮箱的特别说明：有一些时候可能会有很多人查询，发送可能会有一定的延迟，另外如果查不到邮件可能在你邮件的垃圾箱中。\n" +
 				"SPDNET改名功能: 以后叫我 xxxxxx");
-		bot.sendGroupMsg(event.getGroupId(), sendMsg.build(), false);
+		bot.sendMsg(event, sendMsg.build(), false);
 	}
 }
