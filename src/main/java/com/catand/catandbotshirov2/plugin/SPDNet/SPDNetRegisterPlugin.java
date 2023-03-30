@@ -161,7 +161,6 @@ public class SPDNetRegisterPlugin {
 					else if (account1.getKey().equals(key)) {
 						accountIterator.remove();
 						sendMsg = MsgUtils.builder().at(event.getUserId()).text("\n好好好, " + name);
-
 					}
 				}
 
@@ -178,7 +177,6 @@ public class SPDNetRegisterPlugin {
 				bot.sendGroupMsg(event.getGroupId(), sendMsg.build(), false);
 				return;
 			}
-			sendMsg = MsgUtils.builder().at(event.getUserId()).text("创建成功!\n用户名:" + name + "\n你的key已经发送到你的QQ邮箱。如果没有请到垃圾箱查看。");
 		} else {
 			sendMsg = MsgUtils.builder().at(event.getUserId()).text("语法无效!\n格式:\"以后叫我 XXX\"");
 		}
