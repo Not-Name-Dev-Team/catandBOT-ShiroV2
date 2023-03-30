@@ -1,0 +1,16 @@
+server:
+  port: 11454
+shiro:
+  # 插件列表 (顺序执行，如果前一个插件返回了MESSAGE_BLOCK，将不会执行后续插件)
+  # 注解方式无需在此定义插件
+  plugin-list:
+    - com.catand.catandbotshirov2.plugin.LogPlugin #控制台日志插件
+    - com.catand.catandbotshirov2.plugin.CatandPlugin #大部分基础功能插件
+    - com.catand.catandbotshirov2.plugin.SPDNet.SPDNetRegisterPlugin #SPDNet相关插件,一般情况下没用
+    - com.catand.catandbotshirov2.plugin.SPDNet.SPDNetGetKeyPlugin
+    - com.catand.catandbotshirov2.plugin.BeautifulPicturePlugin #美图插件
+    - com.catand.catandbotshirov2.plugin.ImagePlugin #查头像插件
+    - com.catand.catandbotshirov2.plugin.HelpPlugin #指令菜单插件
+    - com.catand.catandbotshirov2.plugin.SearchQQNumberPlugin #@查询QQ号插件
+#    - com.catand.catandbotshirov2.plugin.MathAutoReplyPlugin
+#    - com.catand.catandbotshirov2.plugin.TestPlugin #@测试功能插件
